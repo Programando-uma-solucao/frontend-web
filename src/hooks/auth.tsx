@@ -27,7 +27,7 @@ interface AuthState {
 
 const AuthContext = createContext({} as AuthContextData);
 
-const AuthProvider = ({ children }) => {
+const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@ProgramandoSolucao:token');
     const user = localStorage.getItem('@ProgramandoSolucao:user');
