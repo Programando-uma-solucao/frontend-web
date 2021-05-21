@@ -2,6 +2,22 @@
   "name": "frontend-web",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "cross-env CI=true lint-staged",
+      "pre-push": "cross-env CI=true yarn test --no-coverage --forceExit"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.tsx": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@chakra-ui/react": "^1.6.2",
     "@emotion/react": "^11",
@@ -17,6 +33,7 @@
     "@unform/core": "^2.1.6",
     "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "framer-motion": "^4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -59,6 +76,8 @@
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.21.5",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
   }
 }
