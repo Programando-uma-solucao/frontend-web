@@ -15,10 +15,11 @@ class AuthService {
   }
 
   public async login({ email, password }: LoginProps) {
-    return this.api
-      .post('', { email, password })
-      .then(res => res.data)
-      .catch(err => err.response.data);
+    return this.api.post('', { email, password });
+  }
+
+  public async recoverSecretQuestion(email: string) {
+    return this.api.get(`recover-secret-question/${email}`);
   }
 }
 

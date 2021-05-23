@@ -4,7 +4,6 @@ import {
   Route as ReactDOMRoute,
   Redirect,
 } from 'react-router-dom';
-import { WithChildren } from '../common/interfaces/WithChildren';
 
 import { useAuth } from '../hooks/auth';
 
