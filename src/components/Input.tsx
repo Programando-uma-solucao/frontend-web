@@ -12,12 +12,16 @@ import { IconProps } from '@chakra-ui/icons';
 interface InputProps extends ChakraInputProps {
   rightElement?: ComponentType<IconProps>;
   leftElement?: ComponentType<IconProps>;
+  rightElementClick?: () => void;
+  leftElementClick?: () => void;
   errorMessage: string;
 }
 
 const Input = ({
   rightElement: RightElement,
   leftElement: LeftElement,
+  rightElementClick,
+  leftElementClick,
   errorMessage,
   isInvalid,
   ...rest
@@ -25,9 +29,8 @@ const Input = ({
   return (
     <InputGroup>
       {LeftElement ? (
-        <InputLeftElement width="4.5rem">
-          <InputLeftElement />
-          <LeftElement />
+        <InputLeftElement onClick={leftElementClick}>
+          <InputLeftElement children={<LeftElement color="gray.400" />} />
         </InputLeftElement>
       ) : null}
       <ChakraInput
@@ -42,9 +45,8 @@ const Input = ({
         </Text>
       ) : null}
       {RightElement ? (
-        <InputRightElement width="4.5rem">
-          <InputRightElement />
-          <RightElement />
+        <InputRightElement onClick={rightElementClick}>
+          <InputRightElement children={<RightElement color="gray.400" />} />
         </InputRightElement>
       ) : null}
     </InputGroup>
