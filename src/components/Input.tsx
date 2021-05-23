@@ -15,7 +15,7 @@ interface InputProps extends ChakraInputProps {
   leftElement?: ComponentType<IconProps>;
   rightElementClick?: () => void;
   leftElementClick?: () => void;
-  errorMessage: string;
+  errorMessage: string | undefined;
 }
 
 const Input = ({
