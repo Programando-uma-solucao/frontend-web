@@ -7,7 +7,7 @@ import Toast from './components/Toast';
 import AppProvider from './hooks';
 import Routes from './routes';
 
-const App: React.FC = () => (
+const App = () => (
   <>
     <AppProvider>
       <ChakraProvider theme={theme}>

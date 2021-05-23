@@ -4,6 +4,7 @@ import {
   Route as ReactDOMRoute,
   Redirect,
 } from 'react-router-dom';
+import { WithChildren } from '../common/interfaces/WithChildren';
 
 import { useAuth } from '../hooks/auth';
 
@@ -12,11 +13,11 @@ interface RouteProps extends ReactDOMRouteProps {
   component: React.ComponentType;
 }
 
-const Route: React.FC<RouteProps> = ({
+const Route = ({
   isPrivate = false,
   component: Component,
   ...rest
-}) => {
+}: RouteProps) => {
   const { user } = useAuth();
 
   return (

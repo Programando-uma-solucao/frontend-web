@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { WithChildren } from '../common/interfaces/WithChildren';
 
 import api from '../services/api';
 import { AuthService } from '../services/authService';
@@ -27,7 +28,9 @@ interface AuthState {
 
 const AuthContext = createContext({} as AuthContextData);
 
-const AuthProvider: React.FC = ({ children }) => {
+type AuthProviderProps = WithChildren;
+
+const AuthProvider = ({ children }: AuthProviderProps) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@ProgramandoSolucao:token');
     const user = localStorage.getItem('@ProgramandoSolucao:user');
