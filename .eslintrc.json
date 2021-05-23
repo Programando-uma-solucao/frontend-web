@@ -20,6 +20,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
   "rules": {
+    "react/no-children-prop": "off",
     "react/require-default-props": "off",
     "no-unused-vars": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
