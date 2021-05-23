@@ -1,5 +1,6 @@
 import React, { ComponentType } from 'react';
 import {
+  Box,
   Input as ChakraInput,
   InputGroup,
   InputLeftElement,
@@ -27,29 +28,36 @@ const Input = ({
   ...rest
 }: InputProps) => {
   return (
-    <InputGroup>
-      {LeftElement ? (
-        <InputLeftElement onClick={leftElementClick}>
-          <InputLeftElement children={<LeftElement color="gray.400" />} />
-        </InputLeftElement>
-      ) : null}
-      <ChakraInput
-        errorBorderColor="red.500"
-        mb={4}
-        isInvalid={isInvalid}
-        {...rest}
-      />
+    <Box mb={4}>
+      <InputGroup>
+        {LeftElement ? (
+          <InputLeftElement onClick={leftElementClick}>
+            <InputLeftElement children={<LeftElement color="gray.400" />} />
+          </InputLeftElement>
+        ) : null}
+        <ChakraInput
+          errorBorderColor="red.500"
+          isInvalid={isInvalid}
+          {...rest}
+        />
+        {RightElement ? (
+          <InputRightElement onClick={rightElementClick}>
+            <InputRightElement children={<RightElement color="gray.400" />} />
+          </InputRightElement>
+        ) : null}
+      </InputGroup>
       {isInvalid ? (
-        <Text mb={3} fontSize="xs" color="red.400">
+        <Text
+          width="full"
+          marginBottom={3}
+          marginTop={1}
+          fontSize="xs"
+          color="red.400"
+        >
           {errorMessage}
         </Text>
       ) : null}
-      {RightElement ? (
-        <InputRightElement onClick={rightElementClick}>
-          <InputRightElement children={<RightElement color="gray.400" />} />
-        </InputRightElement>
-      ) : null}
-    </InputGroup>
+    </Box>
   );
 };
 
