@@ -58,5 +58,5 @@ Porém será utilizado quando começar, o react-testing-library e react-testing-
 ## Dependências
 
 - Chakra UI
-- Unform
+- React Hook Form
 - Axios
