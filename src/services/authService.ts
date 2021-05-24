@@ -21,6 +21,12 @@ class AuthService {
   public async recoverSecretQuestion(email: string) {
     return this.api.get(`recover-secret-question/${email}`);
   }
+
+  public async sendAnswerForSecretQuestion(email: string, answer: string) {
+    return this.api.post(`answer-secret-question/${email}`, {
+      answer,
+    });
+  }
 }
 
 export { AuthService };
