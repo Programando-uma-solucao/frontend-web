@@ -27,6 +27,13 @@ class AuthService {
       answer,
     });
   }
+
+  public async changePassword(token: string, newPassword: string) {
+    return this.api.post('change-password', {
+      token,
+      newPassword,
+    });
+  }
 }
 
 export { AuthService };
