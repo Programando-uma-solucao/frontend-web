@@ -6,6 +6,7 @@
 
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:react/recommended",
     "airbnb",
     "plugin:prettier/recommended"
@@ -22,7 +23,7 @@
   "rules": {
     "react/no-children-prop": "off",
     "react/require-default-props": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
