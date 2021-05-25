@@ -19,6 +19,7 @@ interface AuthContextData {
   user: User;
   login(credentials: LoginCredentials): Promise<void>;
   logout(): void;
+  storeSession(token: string, user: User): void;
 }
 
 interface AuthState {
@@ -43,7 +44,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return {} as AuthState;
   });
 
-  const login = useCallback(async ({ email, password }) => {
+  const login = useCallback(async ({ email, password }: LoginCredentials) => {
     const authService = new AuthService();
     const response = await authService.login({ email, password });
 
@@ -64,8 +65,17 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setData({} as AuthState);
   }, []);
 
+  const storeSession = useCallback((token: string, user: User) => {
+    localStorage.setItem('@ProgramandoSolucao:token', token);
+    localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
+
+    setData({ token, user });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, login, logout }}>
+    <AuthContext.Provider
+      value={{ user: data.user, login, logout, storeSession }}
+    >
       {children}
     </AuthContext.Provider>
   );
