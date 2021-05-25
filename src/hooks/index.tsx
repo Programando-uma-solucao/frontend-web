@@ -1,4 +1,3 @@
-import React from 'react';
 import { WithChildren } from '../common/interfaces/WithChildren';
 import { AuthProvider } from './auth';
 
