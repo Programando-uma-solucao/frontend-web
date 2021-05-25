@@ -56,7 +56,9 @@ const ForgetPassword = () => {
       );
       if (response.status === 200) {
         toast('Resposta correta.', { type: 'success' });
-        history.push('/recover-password');
+        history.push('/recover-password', {
+          token: response.data.token,
+        });
       }
       return;
     } catch (error) {
