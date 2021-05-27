@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Flex, Heading, Image, Spinner } from '@chakra-ui/react';
 import {
   CheckIcon,

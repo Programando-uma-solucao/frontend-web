@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import { ComponentType } from 'react';
 import {
   Box,
   Input as ChakraInput,
@@ -15,7 +15,7 @@ interface InputProps extends ChakraInputProps {
   leftElement?: ComponentType<IconProps>;
   rightElementClick?: () => void;
   leftElementClick?: () => void;
-  errorMessage: string;
+  errorMessage: string | undefined;
 }
 
 const Input = ({

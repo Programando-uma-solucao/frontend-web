@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
@@ -7,7 +6,7 @@ import Toast from './components/Toast';
 import AppProvider from './hooks';
 import Routes from './routes';
 
-const App: React.FC = () => (
+const App = () => (
   <>
     <AppProvider>
       <ChakraProvider theme={theme}>
