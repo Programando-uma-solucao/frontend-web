@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import { createContext, useCallback, useState, useContext } from 'react';
+import { WithChildren } from '../common/interfaces/WithChildren';
 
 import api from '../services/api';
 import { AuthService } from '../services/authService';
@@ -12,12 +13,14 @@ interface User {
   id: string;
   name: string;
   email: string;
+  role: string;
 }
 
 interface AuthContextData {
   user: User;
   login(credentials: LoginCredentials): Promise<void>;
   logout(): void;
+  storeSession(token: string, user: User): void;
 }
 
 interface AuthState {
@@ -27,7 +30,9 @@ interface AuthState {
 
 const AuthContext = createContext({} as AuthContextData);
 
-const AuthProvider: React.FC = ({ children }) => {
+type AuthProviderProps = WithChildren;
+
+const AuthProvider = ({ children }: AuthProviderProps) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@ProgramandoSolucao:token');
     const user = localStorage.getItem('@ProgramandoSolucao:user');
@@ -40,7 +45,7 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const login = useCallback(async ({ email, password }) => {
+  const login = useCallback(async ({ email, password }: LoginCredentials) => {
     const authService = new AuthService();
     const response = await authService.login({ email, password });
 
@@ -61,8 +66,17 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({} as AuthState);
   }, []);
 
+  const storeSession = useCallback((token: string, user: User) => {
+    localStorage.setItem('@ProgramandoSolucao:token', token);
+    localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
+
+    setData({ token, user });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, login, logout }}>
+    <AuthContext.Provider
+      value={{ user: data.user, login, logout, storeSession }}
+    >
       {children}
     </AuthContext.Provider>
   );
