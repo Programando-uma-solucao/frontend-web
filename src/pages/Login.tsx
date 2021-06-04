@@ -142,6 +142,18 @@ const Login = () => {
         >
           Esqueci minha senha.
         </Button>
+
+        <Button
+          onClick={() => history.push('/register')}
+          colorScheme="gray"
+          padding={2}
+          marginTop={4}
+          width="40"
+          fontSize="sm"
+          variant="ghost"
+        >
+          Cadastre-se
+        </Button>
       </Flex>
     </Flex>
   );
