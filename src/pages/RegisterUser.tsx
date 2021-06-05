@@ -156,6 +156,9 @@ const RegisterUser = () => {
   return (
     <Flex direction="column" alignItems="center" padding={5}>
       <Box padding={4}>
+        <Text fontSize="xx-large" fontFamily="Merienda" marginBottom={2}>
+          Una Facilita
+        </Text>
         <Image src={Logo} width="90" height="90" />
       </Box>
 
