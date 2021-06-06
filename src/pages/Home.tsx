@@ -6,8 +6,14 @@ const Home = () => {
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
       <Box>
-        <Text fontSize="4xl" textAlign="center" color="teal.500" marginY="25">
-          Programando uma Solução
+        <Text
+          fontFamily="Merienda"
+          fontSize="4xl"
+          textAlign="center"
+          color="teal.500"
+          marginY="25"
+        >
+          Una Facilita
         </Text>
 
         <Image
