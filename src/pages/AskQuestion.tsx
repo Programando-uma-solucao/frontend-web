@@ -52,7 +52,7 @@ const AskQuestion = () => {
         type: 'success',
       });
 
-      history.push('/list-questions');
+      history.push('/questions');
     } catch (error) {
       setLoading(false);
       toast(
