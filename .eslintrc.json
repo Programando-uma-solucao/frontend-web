@@ -21,6 +21,8 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
   "rules": {
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
     "react/react-in-jsx-scope": "off",
     "react/no-children-prop": "off",
     "react/require-default-props": "off",
