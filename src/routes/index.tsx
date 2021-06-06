@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import ForgetPassword from '../pages/ForgetPassword';
 import AnswerSecretQuestion from '../pages/AnswerSecretQuestion';
 import RecoverPassword from '../pages/RecoverPassword';
+import RegisterUser from '../pages/RegisterUser';
 
 const Routes = () => (
   <Switch>
@@ -15,6 +16,7 @@ const Routes = () => (
     <Route path="/forget-password" exact component={ForgetPassword} />
     <Route path="/secret-question" exact component={AnswerSecretQuestion} />
     <Route path="/recover-password" exact component={RecoverPassword} />
+    <Route path="/register" exact component={RegisterUser} />
   </Switch>
 );
 
