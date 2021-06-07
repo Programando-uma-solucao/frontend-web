@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 
 import theme from './styles/theme';
 import Toast from './components/Toast';
@@ -12,7 +12,9 @@ const App = () => (
     <AppProvider>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
-          <Routes />
+          <Box pb={60}>
+            <Routes />
+          </Box>
           <TabNavigation />
         </BrowserRouter>
       </ChakraProvider>
