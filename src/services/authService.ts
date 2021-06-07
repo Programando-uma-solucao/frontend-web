@@ -15,7 +15,7 @@ class AuthService {
   }
 
   public async login({ email, password }: LoginProps) {
-    return this.api.post('', { email, password });
+    return this.api.post('login', { email, password });
   }
 
   public async recoverSecretQuestion(email: string) {

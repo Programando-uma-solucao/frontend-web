@@ -1,8 +1,10 @@
 import { createContext, useCallback, useState, useContext } from 'react';
+import { toast } from 'react-toastify';
 import { WithChildren } from '../common/interfaces/WithChildren';
 
 import api from '../services/api';
 import { AuthService } from '../services/authService';
+import { getJwtPayload } from '../common/utils/DecryptTokenData';
 
 interface LoginCredentials {
   email: string;
@@ -47,16 +49,25 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const login = useCallback(async ({ email, password }: LoginCredentials) => {
     const authService = new AuthService();
-    const response = await authService.login({ email, password });
 
-    const { token, user } = response.data;
+    try {
+      const response = await authService.login({ email, password });
 
-    localStorage.setItem('@ProgramandoSolucao:token', token);
-    localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
+      const { token } = response.data;
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+      const user = getJwtPayload(token);
 
-    setData({ token, user });
+      localStorage.setItem('@ProgramandoSolucao:token', token);
+      localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
+
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      setData({ token, user });
+    } catch (error) {
+      toast('Ocorreu um erro ao tentar fazer seu login, tente novamente', {
+        type: 'error',
+      });
+    }
   }, []);
 
   const logout = useCallback(() => {
