@@ -12,7 +12,7 @@ const App = () => (
     <AppProvider>
       <ChakraProvider theme={theme}>
         <BrowserRouter>
-          <Box pb={60}>
+          <Box mb="60px">
             <Routes />
           </Box>
           <TabNavigation />
