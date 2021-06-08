@@ -96,6 +96,12 @@ const schema = yup.object().shape({
   address: yup.string().required('Obrigatório informar endereço'),
   password: yup.string().required('Obrigatório informar senha'),
   terms: yup.bool().oneOf([true], 'É preciso aceitar os termos para continuar'),
+  secretQuestion: yup
+    .string()
+    .required('Obrigatório informar a pergunta secreta'),
+  secretAnswer: yup
+    .string()
+    .required('Obrigatório informar a resposta da pergunta secreta'),
 });
 
 const RegisterUser = () => {
@@ -159,7 +165,7 @@ const RegisterUser = () => {
         <Text fontSize="xx-large" fontFamily="Merienda" marginBottom={2}>
           Una Facilita
         </Text>
-        <Image src={Logo} width="90" height="90" />
+        <Image src={Logo} width="90" height="90" marginX="auto" />
       </Box>
 
       <Box>
