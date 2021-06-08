@@ -82,7 +82,7 @@ const ForgetPassword = () => {
 
   return (
     <Flex
-      height="100vh"
+      height="100%"
       direction="column"
       justifyContent="center"
       alignItems="center"
