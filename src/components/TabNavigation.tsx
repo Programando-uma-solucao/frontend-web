@@ -25,6 +25,7 @@ const TabNavigation = () => {
   const navStyle: CSSProperties = {
     position: 'fixed',
     bottom: 0,
+    flexShrink: 0,
     padding: '10px',
     background: theme.colors.teal['500'],
     borderTopLeftRadius: 5,

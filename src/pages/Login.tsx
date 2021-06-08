@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <Flex
-      height="100vh"
+      height="100%"
       justifyContent="center"
       alignItems="center"
       padding="14"

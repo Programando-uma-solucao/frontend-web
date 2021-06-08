@@ -66,7 +66,7 @@ const AskQuestion = () => {
 
   return (
     <Flex
-      height="100vh"
+      height="100%"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
