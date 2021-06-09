@@ -36,6 +36,7 @@ const ForgetPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<FormInputs>({
     resolver: yupResolver(schema),
   });
@@ -48,12 +49,11 @@ const ForgetPassword = () => {
 
     try {
       const response = await authService.recoverSecretQuestion(data.email);
-      if (response.status === 200 && response.data.secretQuestion) {
+      if (response.status === 200 && response.data.question) {
         setLoading(false);
         history.push('/secret-question', {
-          state: {
-            secretQuestion: response.data.secretQuestion,
-          },
+          secretQuestion: response.data.question,
+          email: getValues().email,
         });
         return;
       }

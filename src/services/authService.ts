@@ -19,19 +19,20 @@ class AuthService {
   }
 
   public async recoverSecretQuestion(email: string) {
-    return this.api.get(`recover-secret-question/${email}`);
+    return this.api.get(`account/recover-secret-question/${email}`);
   }
 
   public async sendAnswerForSecretQuestion(email: string, answer: string) {
-    return this.api.post(`answer-secret-question/${email}`, {
+    return this.api.post('account/answer-secret-question', {
+      email,
       answer,
     });
   }
 
-  public async changePassword(token: string, newPassword: string) {
-    return this.api.post('change-password', {
+  public async changePassword(token: string, password: string) {
+    return this.api.put('account/change-password', {
       token,
-      newPassword,
+      password,
     });
   }
 }
