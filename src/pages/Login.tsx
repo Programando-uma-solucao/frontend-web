@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Flex, Heading, Image, Spinner } from '@chakra-ui/react';
 import {
   CheckIcon,
+  // CheckIcon,
   ViewIcon,
   ViewOffIcon,
   WarningIcon,
@@ -40,8 +41,8 @@ const Login = () => {
         email: data.email,
         password: data.password,
       });
-
       setLoading(false);
+
       toast(
         <Flex alignItems="center" justifyContent="space-around">
           {' '}
@@ -49,7 +50,8 @@ const Login = () => {
         </Flex>,
         { type: 'success' },
       );
-      history.push('/home');
+
+      history.push('/questions');
     } catch (error) {
       toast(
         <Flex alignItems="center" justifyContent="space-around">

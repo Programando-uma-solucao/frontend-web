@@ -63,7 +63,7 @@ const RecoverPassword = () => {
       if (response.status === 200) {
         toast('Senha alterada com sucesso.', { type: 'success' });
         storeSession(response.data.token, response.data.user);
-        history.push('/home');
+        history.push('/login');
       }
       return;
     } catch (error) {

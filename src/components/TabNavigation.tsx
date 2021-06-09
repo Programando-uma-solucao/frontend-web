@@ -130,7 +130,10 @@ const TabNavigation = () => {
       {auth.user ? (
         <Button
           type="button"
-          onClick={() => auth.logout()}
+          onClick={() => {
+            auth.logout();
+            history.push('/login');
+          }}
           style={itemNavStyle}
         >
           <img style={imgNavStyle} src={LoginIcon} alt="Fazer login" />

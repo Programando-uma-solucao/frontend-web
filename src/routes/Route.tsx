@@ -23,16 +23,17 @@ const Route = ({
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
-        return isPrivate === !!user ? (
-          <Component />
-        ) : (
-          <Redirect
-            to={{
-              pathname: isPrivate ? '/' : '/home',
-              state: { from: location },
-            }}
-          />
-        );
+        if (isPrivate && !!user) {
+          return <Component />;
+        }
+
+        if (isPrivate && !user) {
+          return (
+            <Redirect to={{ pathname: '/login', state: { from: location } }} />
+          );
+        }
+
+        return <Component />;
       }}
     />
   );

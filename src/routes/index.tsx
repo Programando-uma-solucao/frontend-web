@@ -19,7 +19,7 @@ const Routes = () => (
     <Route path="/secret-question" exact component={AnswerSecretQuestion} />
     <Route path="/recover-password" exact component={RecoverPassword} />
     <Route path="/register" exact component={RegisterUser} />
-    <Route path="/ask-question" exact component={AskQuestion} />
+    <Route path="/ask-question" isPrivate exact component={AskQuestion} />
     <Route path="" exact component={NotFound} />
   </Switch>
 );
