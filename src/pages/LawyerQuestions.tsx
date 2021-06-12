@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import LawyerCardQuestion from '../components/LawyerCardQuestion';
 import { QuestionService } from '../services/questionService';
 import { useAuth } from '../hooks/auth';
-import { GetQuestionsResponse } from '../common/interfaces/GetQuestionResponse';
+import { GetQuestionsResponse } from '../common/interfaces/GetQuestionsResponse';
 
 const LawyerQuestions = () => {
   const [questions, setQuestions] = useState<GetQuestionsResponse[]>();
