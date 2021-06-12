@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Flex, Spinner } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
+import Lottie, { Options } from 'react-lottie';
 
 import LawyerCardQuestion from '../components/LawyerCardQuestion';
 import { QuestionService } from '../services/questionService';
 import { useAuth } from '../hooks/auth';
 import { GetQuestionsResponse } from '../common/interfaces/GetQuestionsResponse';
+import animationData from '../assets/animations/empty.json';
+
+const options: Options = {
+  animationData,
+  autoplay: true,
+  loop: false,
+};
 
 const LawyerQuestions = () => {
   const [questions, setQuestions] = useState<GetQuestionsResponse[]>();
@@ -39,6 +47,12 @@ const LawyerQuestions = () => {
 
   return (
     <Flex height="100%" flexDirection="column" justifyContent="center">
+      {loading ? (
+        <Flex marginY="auto" justifyContent="center">
+          <Spinner alignSelf="flex-end" color="teal" size="lg" />
+        </Flex>
+      ) : null}
+
       {!loading && questions ? (
         questions.map(question => (
           <LawyerCardQuestion
@@ -50,9 +64,7 @@ const LawyerQuestions = () => {
           />
         ))
       ) : (
-        <Flex marginY="auto" justifyContent="center">
-          <Spinner alignSelf="flex-end" color="teal" size="lg" />
-        </Flex>
+        <Lottie options={options} width={250} height={250} />
       )}
     </Flex>
   );

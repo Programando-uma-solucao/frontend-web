@@ -5,7 +5,7 @@ import Lottie, { Options } from 'react-lottie';
 
 import { QuestionService } from '../services/questionService';
 import { useAuth } from '../hooks/auth';
-import { GetQuestionsResponse } from '../common/interfaces/GetQuestionResponse';
+import { GetQuestionsResponse } from '../common/interfaces/GetQuestionsResponse';
 import UserCardQuestion from '../components/UserCardQuestion';
 import MakeQuestionIcon from '../assets/make-question.svg';
 import QuestionScreening from '../components/QuestionScreening';
