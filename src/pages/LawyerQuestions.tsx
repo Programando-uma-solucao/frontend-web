@@ -46,7 +46,7 @@ const LawyerQuestions = () => {
             id={question.id}
             tags={question.tags}
             question={question.question}
-            questionerName={question.questionerName}
+            questionerName={question.questionerName as string}
           />
         ))
       ) : (
