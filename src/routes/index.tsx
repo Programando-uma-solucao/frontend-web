@@ -10,6 +10,8 @@ import RecoverPassword from '../pages/RecoverPassword';
 import RegisterUser from '../pages/RegisterUser';
 import AskQuestion from '../pages/AskQuestion';
 import NotFound from '../pages/NotFound';
+import LawyerQuestions from '../pages/LawyerQuestions';
+import UserQuestions from '../pages/UserQuestions';
 
 const Routes = () => (
   <Switch>
@@ -20,6 +22,14 @@ const Routes = () => (
     <Route path="/recover-password" exact component={RecoverPassword} />
     <Route path="/register" exact component={RegisterUser} />
     <Route path="/ask-question" isPrivate exact component={AskQuestion} />
+    <Route
+      path="/lawyer-questions"
+      isPrivate
+      exact
+      component={LawyerQuestions}
+    />
+    <Route path="/questions" isPrivate exact component={UserQuestions} />
+
     <Route path="" exact component={NotFound} />
   </Switch>
 );
