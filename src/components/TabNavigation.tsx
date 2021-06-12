@@ -95,7 +95,7 @@ const TabNavigation = () => {
         type="button"
         onClick={() =>
           auth.user.role === 'LAWYER'
-            ? history.push('answer-questions')
+            ? history.push('lawyer-questions')
             : history.push('questions')
         }
         disabled={!auth.user}
