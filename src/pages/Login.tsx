@@ -51,7 +51,7 @@ const Login = () => {
         { type: 'success' },
       );
 
-      history.push('/questions');
+      history.push('/');
     } catch (error) {
       toast(
         <Flex alignItems="center" justifyContent="space-around">
