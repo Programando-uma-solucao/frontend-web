@@ -1,5 +1,4 @@
 import { createContext, useCallback, useState, useContext } from 'react';
-import { toast } from 'react-toastify';
 import { WithChildren } from '../common/interfaces/WithChildren';
 
 import api from '../services/api';
@@ -40,7 +39,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const user = localStorage.getItem('@ProgramandoSolucao:user');
 
     if (token && user) {
-      api.defaults.headers = `Bearer ${token}`;
+      api.defaults.headers = { authorization: `Bearer ${token}` };
       return { token, user: JSON.parse(user) };
     }
 
@@ -50,24 +49,18 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = useCallback(async ({ email, password }: LoginCredentials) => {
     const authService = new AuthService();
 
-    try {
-      const response = await authService.login({ email, password });
+    const response = await authService.login({ email, password });
 
-      const { token } = response.data;
+    const { token } = response.data;
 
-      const user = getJwtPayload(token);
+    const user = getJwtPayload(token);
 
-      localStorage.setItem('@ProgramandoSolucao:token', token);
-      localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
+    localStorage.setItem('@ProgramandoSolucao:token', token);
+    localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
-      setData({ token, user });
-    } catch (error) {
-      toast('Ocorreu um erro ao tentar fazer seu login, tente novamente', {
-        type: 'error',
-      });
-    }
+    setData({ token, user });
   }, []);
 
   const logout = useCallback(() => {
