@@ -53,15 +53,16 @@ const QuestionScreening = ({ isOpen, setOpen }: Props) => {
   };
 
   const addTagAndGoStep = (confirmed: boolean) => {
-    setTags(state => [...state, currentQuestion.tag]);
-
     if (confirmed && currentQuestion.subQuestions.length) {
+      setTags(state => [...state, currentQuestion.tag]);
       setSubQuestions(currentQuestion.subQuestions);
       setCurrentQuestion(currentQuestion.subQuestions[0]);
       return;
     }
 
     if (confirmed && !currentQuestion.subQuestions.length) {
+      setTags(state => [...state, currentQuestion.tag]);
+
       onClose();
       toast(
         <Text>
@@ -76,7 +77,7 @@ const QuestionScreening = ({ isOpen, setOpen }: Props) => {
         },
       );
       history.push('/ask-question', {
-        tags,
+        tags: [...tags, currentQuestion.tag],
       });
       return;
     }
