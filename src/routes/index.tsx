@@ -13,6 +13,8 @@ import NotFound from '../pages/NotFound';
 import LawyerQuestions from '../pages/LawyerQuestions';
 import UserQuestions from '../pages/UserQuestions';
 import QuestionDetails from '../pages/QuestionDetails';
+import AnswerQuestion from '../pages/AnswerQuestion';
+import Acknowledgment from '../pages/Acknowledgment';
 
 const Routes = () => (
   <Switch>
@@ -36,6 +38,8 @@ const Routes = () => (
       exact
       component={QuestionDetails}
     />
+    <Route path="/answer-question" isPrivate exact component={AnswerQuestion} />
+    <Route path="/acknowledgment" exact component={Acknowledgment} />
 
     <Route path="" exact component={NotFound} />
   </Switch>

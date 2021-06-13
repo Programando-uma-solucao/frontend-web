@@ -17,6 +17,12 @@ interface GetQuestionsProps {
 interface GetQuestionsResponseProps {
   questionId: string;
 }
+
+interface AnswerQuestionProps {
+  answer: string;
+  questionId: string;
+}
+
 class QuestionService {
   private api: AxiosInstance;
 
@@ -36,6 +42,12 @@ class QuestionService {
 
   public async getQuestionResponse({ questionId }: GetQuestionsResponseProps) {
     return this.api.get<GetResponseQuestion>(`question/${questionId}/response`);
+  }
+
+  public async answerQuestion({ answer, questionId }: AnswerQuestionProps) {
+    return this.api.post(`question/${questionId}/answer`, {
+      answer,
+    });
   }
 }
 
