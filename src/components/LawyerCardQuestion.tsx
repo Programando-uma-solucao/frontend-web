@@ -5,18 +5,13 @@ import { Box, Flex, Image, Tag, Text, useMediaQuery } from '@chakra-ui/react';
 import { TagsOptions, TagsColors } from '../common/data/tags';
 import { getContrastColor } from '../common/utils/GetContrastColorText';
 import ReplyIcon from '../assets/reply.svg';
+import { MatchedTags } from '../common/interfaces/MatchedTags';
 
 interface Props {
   id: string;
   questionerName: string;
   tags: string[];
   question: string;
-}
-
-interface MatchedTags {
-  tag: string;
-  bgColor: string;
-  textColor: string;
 }
 
 const LawyerCardQuestion = ({ id, questionerName, tags, question }: Props) => {

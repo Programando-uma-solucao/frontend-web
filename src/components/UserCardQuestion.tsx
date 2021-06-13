@@ -39,8 +39,8 @@ const UserCardQuestion = ({ id, hasResponse, tags, question }: Props) => {
   const history = useHistory();
 
   const goToDetails = () => {
-    history.push('/questions/details', {
-      id,
+    history.push('/question/details', {
+      questionId: id,
       hasResponse,
       tags,
       question,
