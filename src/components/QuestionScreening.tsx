@@ -21,8 +21,12 @@ import { useHistory } from 'react-router-dom';
 import { questionsScreening } from '../common/data/questionsScreening';
 import { Question } from '../common/interfaces/Question';
 
-const QuestionScreening = () => {
-  const [isOpen, setIsOpen] = useState(true);
+interface Props {
+  isOpen: boolean;
+  setOpen: (state: boolean) => void;
+}
+
+const QuestionScreening = ({ isOpen, setOpen }: Props) => {
   const [tags, setTags] = useState<string[]>([]);
   const [step, setStep] = useState(0);
   const [stepSubQuestions, setStepSubQuestions] = useState(0);
@@ -33,7 +37,7 @@ const QuestionScreening = () => {
 
   const history = useHistory();
 
-  const onClose = () => setIsOpen(false);
+  const onClose = () => setOpen(false);
 
   const resetSteps = () => {
     setCurrentQuestion(questionsScreening[0]);
