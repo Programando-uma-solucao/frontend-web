@@ -67,6 +67,7 @@ const UserQuestions = () => {
           borderRadius="full"
           width="50px"
           height="50px"
+          style={{ boxShadow: '0px 0px 10px gray' }}
           onClick={() => setModalQuestionsOpen(true)}
         >
           <Image
@@ -93,7 +94,7 @@ const UserQuestions = () => {
             />
           ))
         : null}
-      \
+
       {!loading && !questions.length ? (
         <Flex flexDirection="column">
           <Lottie options={options} width={250} height={250} />

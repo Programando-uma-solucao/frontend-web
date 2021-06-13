@@ -15,6 +15,9 @@ import UserQuestions from '../pages/UserQuestions';
 import QuestionDetails from '../pages/QuestionDetails';
 import AnswerQuestion from '../pages/AnswerQuestion';
 import Acknowledgment from '../pages/Acknowledgment';
+import JuridicArtiles from '../pages/JuridicArtiles';
+import WomanViolence from '../pages/WomanViolence';
+import Depositions from '../pages/Depositions';
 
 const Routes = () => (
   <Switch>
@@ -24,6 +27,7 @@ const Routes = () => (
     <Route path="/secret-question" exact component={AnswerSecretQuestion} />
     <Route path="/recover-password" exact component={RecoverPassword} />
     <Route path="/register" exact component={RegisterUser} />
+
     <Route path="/ask-question" isPrivate exact component={AskQuestion} />
     <Route
       path="/lawyer-questions"
@@ -39,7 +43,12 @@ const Routes = () => (
       component={QuestionDetails}
     />
     <Route path="/answer-question" isPrivate exact component={AnswerQuestion} />
+
     <Route path="/acknowledgment" exact component={Acknowledgment} />
+
+    <Route path="/juridic-articles" exact component={JuridicArtiles} />
+    <Route path="/woman-violence" exact component={WomanViolence} />
+    <Route path="/depositions" exact component={Depositions} />
 
     <Route path="" exact component={NotFound} />
   </Switch>

@@ -1,6 +1,14 @@
 import { useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, Button, Flex, Tag, Text, Tooltip } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Tag,
+  Text,
+  Tooltip,
+  useMediaQuery,
+} from '@chakra-ui/react';
 
 import { TagsOptions, TagsColors } from '../common/data/tags';
 import { getContrastColor } from '../common/utils/GetContrastColorText';
@@ -38,6 +46,8 @@ const UserCardQuestion = ({ id, hasResponse, tags, question }: Props) => {
 
   const history = useHistory();
 
+  const [isLargerThan500] = useMediaQuery('(min-width: 500px)');
+
   const goToDetails = () => {
     history.push('/question/details', {
       questionId: id,
@@ -56,6 +66,8 @@ const UserCardQuestion = ({ id, hasResponse, tags, question }: Props) => {
       marginX={5}
       marginY={2}
       position="relative"
+      maxWidth="500px"
+      width={isLargerThan500 ? '500px' : 'auto'}
     >
       {coloredTags.map(tag => (
         <Tag bg={tag.bgColor} color={tag.textColor} marginY={1} marginRight={1}>
