@@ -45,8 +45,9 @@ class QuestionService {
   }
 
   public async answerQuestion({ answer, questionId }: AnswerQuestionProps) {
-    return this.api.post(`question/${questionId}/answer`, {
+    return this.api.post('answer', {
       answer,
+      questionId,
     });
   }
 }

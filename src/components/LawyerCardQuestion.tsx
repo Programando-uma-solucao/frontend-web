@@ -36,8 +36,8 @@ const LawyerCardQuestion = ({ id, questionerName, tags, question }: Props) => {
   const history = useHistory();
 
   const goToDetails = () => {
-    history.push('/lawyer-questions/details', {
-      id,
+    history.push('/answer-question', {
+      questionId: id,
       questionerName,
       tags,
       question,

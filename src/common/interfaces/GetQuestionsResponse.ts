@@ -1,5 +1,5 @@
 export interface GetQuestionsResponse {
-  id: string;
+  _id: string;
   tags: string[];
   question: string;
   questionerName?: string;

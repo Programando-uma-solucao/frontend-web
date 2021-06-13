@@ -55,8 +55,8 @@ const LawyerQuestions = () => {
       {!loading && questions.length
         ? questions.map(question => (
             <LawyerCardQuestion
-              key={question.id}
-              id={question.id}
+              key={question._id}
+              id={question._id}
               tags={question.tags}
               question={question.question}
               questionerName={question.questionerName as string}

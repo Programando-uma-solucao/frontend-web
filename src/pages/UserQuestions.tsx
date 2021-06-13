@@ -86,8 +86,8 @@ const UserQuestions = () => {
       {!loading && questions.length
         ? questions.map(question => (
             <UserCardQuestion
-              key={question.id}
-              id={question.id}
+              key={question._id}
+              id={question._id}
               tags={question.tags}
               question={question.question}
               hasResponse={!!question.hasResponse}
