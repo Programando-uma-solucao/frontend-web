@@ -4,6 +4,8 @@ import {
   Button,
   Flex,
   Image,
+  Radio,
+  RadioGroup,
   Spinner,
   Text,
   Textarea,
@@ -11,18 +13,30 @@ import {
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import FeatherIcon from '../assets/feather.svg';
 import { useAuth } from '../hooks/auth';
 import { QuestionService } from '../services/questionService';
+import { TagsOptions } from '../common/data/tags';
 
 interface FormInputs {
   question: string;
+  acceptConciliation: string;
 }
 
 interface LocationState {
   tags: string[];
 }
+
+const schema = yup.object().shape({
+  question: yup
+    .string()
+    .required('Preencha o campo')
+    .min(30, 'Digite no mínimo 30 caracteres'),
+  acceptConciliation: yup.mixed().required('Selecione uma opção'),
+});
 
 const AskQuestion = () => {
   const [loading, setLoading] = useState(false);
@@ -31,20 +45,28 @@ const AskQuestion = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>();
+  } = useForm<FormInputs>({
+    resolver: yupResolver(schema),
+  });
 
   const history = useHistory<LocationState>();
   const { user } = useAuth();
 
-  const onSubmit = async ({ question }: FormInputs) => {
+  const onSubmit = async ({ question, acceptConciliation }: FormInputs) => {
     const questionService = new QuestionService();
     setLoading(true);
+
+    const { tags } = history.location.state;
+
+    if (acceptConciliation) {
+      tags.push(TagsOptions.conciliation, TagsOptions.conciliationUna);
+    }
 
     try {
       await questionService.create({
         question,
         accountId: user.id,
-        tags: history.location.state.tags,
+        tags,
       });
       setLoading(false);
 
@@ -92,22 +114,51 @@ const AskQuestion = () => {
               </Box>
             ) : null}
 
+            <Box maxWidth="72" mt="4">
+              <Text textAlign="center">
+                Você aceitaria tentar fazer um acordo com outro interessado?{' '}
+              </Text>
+              <RadioGroup>
+                <Flex mt={4} justifyContent="space-around">
+                  <Radio value="true" {...register('acceptConciliation')}>
+                    Sim
+                  </Radio>
+                  <Radio value="false" {...register('acceptConciliation')}>
+                    Não
+                  </Radio>
+                </Flex>
+                {errors.question ? (
+                  <Box>
+                    <Text color="red.400">
+                      {errors?.acceptConciliation?.message}
+                    </Text>
+                  </Box>
+                ) : null}
+              </RadioGroup>
+            </Box>
+
             {loading ? (
               <Flex mt="6" justifyContent="flex-end">
                 <Spinner alignSelf="flex-end" color="teal" size="lg" />
               </Flex>
             ) : (
-              <Button
-                type="submit"
-                mt={4}
-                alignSelf="flex-end"
-                size="md"
-                width="32"
-                color="white"
-                bg="teal"
+              <Flex
+                mt="4"
+                justifyContent="space-between"
+                flexDirection="column"
               >
-                Feito
-              </Button>
+                <Button
+                  mt={6}
+                  type="submit"
+                  alignSelf="flex-end"
+                  size="md"
+                  width="32"
+                  color="white"
+                  bg="teal"
+                >
+                  Feito
+                </Button>
+              </Flex>
             )}
           </Flex>
         </form>
