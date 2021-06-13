@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import axiosApi from './api';
 import { GetQuestionsResponse } from '../common/interfaces/GetQuestionsResponse';
+import { GetResponseQuestion } from '../common/interfaces/GetResponseQuestion';
 
 interface CreateQuestionProps {
   question: string;
@@ -11,6 +12,10 @@ interface CreateQuestionProps {
 
 interface GetQuestionsProps {
   accountId: string;
+}
+
+interface GetQuestionsResponseProps {
+  questionId: string;
 }
 
 interface AnswerQuestionProps {
@@ -33,6 +38,10 @@ class QuestionService {
     return this.api.get<GetQuestionsResponse[]>(
       `question?accountId=${accountId}`,
     );
+  }
+
+  public async getQuestionResponse({ questionId }: GetQuestionsResponseProps) {
+    return this.api.get<GetResponseQuestion>(`question/${questionId}/response`);
   }
 
   public async answerQuestion({ answer, questionId }: AnswerQuestionProps) {
