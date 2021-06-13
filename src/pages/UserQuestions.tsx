@@ -31,7 +31,6 @@ const UserQuestions = () => {
 
       const response = await questionService.getQuestions({
         accountId: user.id,
-        role: user.role,
       });
 
       setQuestions(response.data);
@@ -43,14 +42,14 @@ const UserQuestions = () => {
     } finally {
       setLoading(false);
     }
-  }, [user.id, user.role]);
+  }, [user.id]);
 
   useEffect(() => {
     recoverQuestions();
   }, [recoverQuestions]);
 
   return (
-    <Flex height="100%" flexDirection="column" justifyContent="center">
+    <Flex height="100%" flexDirection="column" alignItems="center">
       <Box>
         <Button
           position="fixed"

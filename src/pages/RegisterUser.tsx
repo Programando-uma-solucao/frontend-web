@@ -18,6 +18,7 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { cpf } from 'cpf-cnpj-validator';
 import ReactSelect from 'react-select';
+import { useHistory } from 'react-router-dom';
 
 import Logo from '../assets/icon.svg';
 import Input from '../components/Input';
@@ -48,12 +49,11 @@ interface PayloadRequest extends Omit<FormInputs, 'tags' | 'document'> {
   cpf: string;
 }
 
-const tagValues = Object.keys(TagsOptions);
 const tagLabels = Object.values(TagsOptions);
 
-const selectTagOptions = tagValues.map((value, index) => ({
-  value,
-  label: tagLabels[index],
+const selectTagOptions = tagLabels.map(tag => ({
+  value: tag,
+  label: tag,
 }));
 
 const schema = yup.object().shape({
@@ -123,6 +123,7 @@ const RegisterUser = () => {
 
   const watchFields = watch();
   const auth = useAuth();
+  const history = useHistory();
 
   const onSubmit = async (data: FormInputs) => {
     setLoading(true);
@@ -139,10 +140,15 @@ const RegisterUser = () => {
 
     try {
       const response = await registerService.register(payload);
+      setLoading(false);
 
       const { email, id, name, role } = getJwtPayload(response.data.token);
 
+      toast('Registro criado com sucesso!', { type: 'success' });
+
       auth.storeSession(response.data.token, { email, id, name, role });
+
+      history.push('/');
     } catch (err) {
       setLoading(false);
       if (err.response.data.statusCode === 400) {

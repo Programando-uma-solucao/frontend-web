@@ -11,7 +11,6 @@ interface CreateQuestionProps {
 
 interface GetQuestionsProps {
   accountId: string;
-  role?: string;
 }
 class QuestionService {
   private api: AxiosInstance;
@@ -24,10 +23,10 @@ class QuestionService {
     return this.api.post('question', data);
   }
 
-  public async getQuestions({ accountId, role }: GetQuestionsProps) {
-    return this.api.get<GetQuestionsResponse[]>('question', {
-      headers: { accountId, role },
-    });
+  public async getQuestions({ accountId }: GetQuestionsProps) {
+    return this.api.get<GetQuestionsResponse[]>(
+      `question?accountId=${accountId}`,
+    );
   }
 }
 

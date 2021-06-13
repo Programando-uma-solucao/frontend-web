@@ -28,7 +28,6 @@ const LawyerQuestions = () => {
 
         const response = await questionService.getQuestions({
           accountId: user.id,
-          role: user.role,
         });
 
         setQuestions(response.data);
@@ -46,7 +45,7 @@ const LawyerQuestions = () => {
   }, [user.id, user.role]);
 
   return (
-    <Flex height="100%" flexDirection="column" justifyContent="center">
+    <Flex height="100%" flexDirection="column" alignItems="center">
       {loading ? (
         <Flex marginY="auto" justifyContent="center">
           <Spinner alignSelf="flex-end" color="teal" size="lg" />
