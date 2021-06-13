@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Box, Button, Flex, Image, Spinner } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Spinner, Text } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
 import Lottie, { Options } from 'react-lottie';
 
@@ -50,6 +50,11 @@ const UserQuestions = () => {
 
   return (
     <Flex height="100%" flexDirection="column" alignItems="center">
+      <Flex width="full" paddingLeft="20px" mt={3}>
+        <Text fontSize="xl" textAlign="start">
+          Suas perguntas:
+        </Text>
+      </Flex>
       <Box>
         <Button
           position="fixed"
@@ -72,24 +77,24 @@ const UserQuestions = () => {
           />
         </Button>
       </Box>
-
       {loading ? (
         <Flex marginY="auto" justifyContent="center">
           <Spinner alignSelf="flex-end" color="teal" size="lg" />
         </Flex>
       ) : null}
-
-      {!loading && questions.length ? (
-        questions.map(question => (
-          <UserCardQuestion
-            key={question.id}
-            id={question.id}
-            tags={question.tags}
-            question={question.question}
-            hasResponse={!!question.hasResponse}
-          />
-        ))
-      ) : (
+      {!loading && questions.length
+        ? questions.map(question => (
+            <UserCardQuestion
+              key={question.id}
+              id={question.id}
+              tags={question.tags}
+              question={question.question}
+              hasResponse={!!question.hasResponse}
+            />
+          ))
+        : null}
+      \
+      {!loading && !questions.length ? (
         <Flex flexDirection="column">
           <Lottie options={options} width={250} height={250} />
           <Button
@@ -103,8 +108,7 @@ const UserQuestions = () => {
             Recarregar
           </Button>
         </Flex>
-      )}
-
+      ) : null}
       <QuestionScreening
         isOpen={modalQuestionsOpen}
         setOpen={setModalQuestionsOpen}

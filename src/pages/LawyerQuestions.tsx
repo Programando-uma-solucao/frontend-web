@@ -16,7 +16,7 @@ const options: Options = {
 };
 
 const LawyerQuestions = () => {
-  const [questions, setQuestions] = useState<GetQuestionsResponse[]>();
+  const [questions, setQuestions] = useState<GetQuestionsResponse[]>([]);
   const [loading, setLoading] = useState(true);
 
   const { user } = useAuth();
@@ -52,19 +52,21 @@ const LawyerQuestions = () => {
         </Flex>
       ) : null}
 
-      {!loading && questions ? (
-        questions.map(question => (
-          <LawyerCardQuestion
-            key={question.id}
-            id={question.id}
-            tags={question.tags}
-            question={question.question}
-            questionerName={question.questionerName as string}
-          />
-        ))
-      ) : (
+      {!loading && questions.length
+        ? questions.map(question => (
+            <LawyerCardQuestion
+              key={question.id}
+              id={question.id}
+              tags={question.tags}
+              question={question.question}
+              questionerName={question.questionerName as string}
+            />
+          ))
+        : null}
+
+      {!loading && !questions.length ? (
         <Lottie options={options} width={250} height={250} />
-      )}
+      ) : null}
     </Flex>
   );
 };
