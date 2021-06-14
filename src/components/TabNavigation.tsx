@@ -57,7 +57,7 @@ const TabNavigation = () => {
     <nav style={navStyle}>
       <Button
         type="button"
-        onClick={() => history.push('juridic-articles')}
+        onClick={() => history.push('/juridic-articles')}
         style={{
           ...itemNavStyle,
           color: currentPath.includes('juridic-articles')
@@ -75,7 +75,7 @@ const TabNavigation = () => {
 
       <Button
         type="button"
-        onClick={() => history.push('woman-violence')}
+        onClick={() => history.push('/woman-violence')}
         style={{
           ...itemNavStyle,
           color: currentPath.includes('woman-violence')
@@ -95,8 +95,8 @@ const TabNavigation = () => {
         type="button"
         onClick={() =>
           auth.user.role === 'LAWYER'
-            ? history.push('lawyer-questions')
-            : history.push('questions')
+            ? history.push('/lawyer-questions')
+            : history.push('/questions')
         }
         disabled={!auth.user}
         style={{
@@ -115,7 +115,7 @@ const TabNavigation = () => {
 
       <Button
         type="button"
-        onClick={() => history.push('depositions')}
+        onClick={() => history.push('/depositions')}
         style={{
           ...itemNavStyle,
           color: currentPath.includes('depositions')
@@ -142,7 +142,7 @@ const TabNavigation = () => {
       ) : (
         <Button
           type="button"
-          onClick={() => history.push('login')}
+          onClick={() => history.push('/login')}
           style={{
             ...itemNavStyle,
             color: currentPath.includes('login')
