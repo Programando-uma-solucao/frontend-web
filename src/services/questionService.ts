@@ -41,7 +41,7 @@ class QuestionService {
   }
 
   public async getQuestionResponse({ questionId }: GetQuestionsResponseProps) {
-    return this.api.get<GetResponseQuestion>(`question/${questionId}/response`);
+    return this.api.get<GetResponseQuestion>(`answer?questionId=${questionId}`);
   }
 
   public async answerQuestion({ answer, questionId }: AnswerQuestionProps) {
