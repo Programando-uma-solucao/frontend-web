@@ -54,7 +54,7 @@ const AnswerQuestion = () => {
     } catch (error) {
       setLoading(false);
       toast(
-        'Ocorreu um erro ao criar sua pergunta, por favor tente novamente',
+        'Ocorreu um erro ao responder a pergunta, por favor tente novamente',
         {
           type: 'error',
         },
