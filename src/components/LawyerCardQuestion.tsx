@@ -67,7 +67,13 @@ const LawyerCardQuestion = ({ id, questionerName, tags, question }: Props) => {
         <Text maxWidth={isLargerThan500 ? 400 : '80%'}>
           {question.slice(0, isLargerThan500 ? 70 : 50)}...
         </Text>
-        <Box borderRadius="full" bg="teal" p={2} height={10}>
+        <Box
+          style={{ boxShadow: '0px 0px 10px gray' }}
+          borderRadius="full"
+          bg="teal"
+          p={2}
+          height={10}
+        >
           <Image onClick={goToDetails} src={ReplyIcon} width={6} height={6} />
         </Box>
       </Flex>
