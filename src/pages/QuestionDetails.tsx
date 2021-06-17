@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Box, Divider, Flex, Tag, Text, Tooltip } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Flex,
+  Spinner,
+  Tag,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Lottie, { Options } from 'react-lottie';
@@ -61,6 +69,8 @@ const QuestionDetails = () => {
 
         setQuestionResponse(response.data);
       } catch (error) {
+        if (error.response.status === 404) return;
+
         toast(
           'Ocorreu um erro ao tentar recuperar a resposta, por favor tente mais tarde',
           { type: 'error' },
@@ -104,7 +114,7 @@ const QuestionDetails = () => {
         ))}
       </Flex>
 
-      <Box mb={5} mt={5}>
+      <Box width="full" mb={5} mt={5}>
         <Text fontWeight="bold">Sua pergunta:</Text>
         <Text mt={2} fontStyle="italic" fontWeight="black">
           {question}
@@ -115,6 +125,17 @@ const QuestionDetails = () => {
 
       <Box mb="auto" width="full" mt={5}>
         <Text fontWeight="bold">Resposta:</Text>
+
+        {loading ? (
+          <Flex mt={2}>
+            <Spinner
+              color="teal"
+              size="lg"
+              marginLeft="auto"
+              marginRight="auto"
+            />
+          </Flex>
+        ) : null}
 
         {!loading && questionResponse ? (
           <>
