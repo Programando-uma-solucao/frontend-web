@@ -74,6 +74,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.setItem('@ProgramandoSolucao:token', token);
     localStorage.setItem('@ProgramandoSolucao:user', JSON.stringify(user));
 
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
     setData({ token, user });
   }, []);
 

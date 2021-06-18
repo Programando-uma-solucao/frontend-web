@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex, Spinner, Text } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
 import Lottie, { Options } from 'react-lottie';
 
@@ -30,7 +30,7 @@ const LawyerQuestions = () => {
           accountId: user.id,
         });
 
-        setQuestions(response.data);
+        setQuestions(response.data.filter(question => !question.hasResponse));
       } catch (error) {
         toast(
           'Ocorreu um erro ao tentar recuperar as perguntas, tente mais tarde',
@@ -52,6 +52,12 @@ const LawyerQuestions = () => {
         </Flex>
       ) : null}
 
+      <Flex width="full" paddingLeft="20px" mt={3}>
+        <Text fontSize="xl" textAlign="start">
+          Perguntas para sua tag:
+        </Text>
+      </Flex>
+
       {!loading && questions.length
         ? questions.map(question => (
             <LawyerCardQuestion
@@ -65,7 +71,15 @@ const LawyerQuestions = () => {
         : null}
 
       {!loading && !questions.length ? (
-        <Lottie options={options} width={250} height={250} />
+        <Flex
+          height="100%"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+        >
+          <Text>Não há perguntas para suas tag&apos;s</Text>
+          <Lottie options={options} width={250} height={250} />
+        </Flex>
       ) : null}
     </Flex>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Flex,
@@ -124,6 +124,11 @@ const RegisterUser = () => {
   const watchFields = watch();
   const auth = useAuth();
   const history = useHistory();
+
+  useEffect(() => {
+    if (Object.values(errors).length)
+      toast('Verifique novamente o formulário', { type: 'warning' });
+  }, [errors]);
 
   const onSubmit = async (data: FormInputs) => {
     setLoading(true);
